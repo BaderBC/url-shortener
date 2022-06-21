@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Main site</title>
+</head>
+<body>
+<script src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script>
+<script src="script-main.js"></script>
+    <h1>url shortener (speedrun)</h1>
+    <form onsubmit="
+    setTimeout(() => {
+        let token = randomToken ? randomToken : document.getElementById('accessLink').value.split('/')[3]
+        gun.get('accessLink')
+        .get(token)
+        .put(document.getElementById('destinationLink').value);
+            document.write(`
+                <h1>Your url is:</h1>
+                <a href='http://localhost/${token}/'>http://localhost/${token}/</a>
+            `)
+        }, 0);
+    return false;">
+
+        <input type="text" id="destinationLink" placeholder="Link" required>
+        <br>
+        <input type="text" placeholder="Access link" id="accessLink" required>
+        <button onclick="const randomToken = randomString();
+            document.getElementById('accessLink').value = `http://localhost/${randomToken}/`;
+            return false;">Randomize access link</button>
+        <br>
+        <input type="submit" value="submit">
+
+    </form>
+</body>
+</html>

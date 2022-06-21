@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script>
+<script defer>
+    const gun = GUN(),
+        token = window.location.href.split('/')[3];
+    gun.get('accessLink').get(token).on(x => {
+        window.location.href = x;
+        window.location.replace(x);
+    })
+</script>
+</body>
+</html>
